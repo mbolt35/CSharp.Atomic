@@ -3,7 +3,7 @@
 Properties
 obj
 bin/Debug/
-**/*.DS_Store
+*.DS_Store
 
 # mstest test results
 TestResults
