@@ -1,6 +1,8 @@
 # Build Folders (you can keep bin if you'd like, to store dlls and pdbs)
-bin
+# bin
+Properties
 obj
+bin/Debug/
 
 # mstest test results
 TestResults
