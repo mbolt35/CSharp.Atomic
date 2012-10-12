@@ -23,7 +23,7 @@ namespace CSharp.Atomic {
     using System.Threading;
 
     /// <summary>
-    /// Provides non-blocking atomic read/write utility for a <c>int</c> value. The atomic classes found in this package
+    /// Provides lock-free atomic read/write utility for a <c>int</c> value. The atomic classes found in this package
     /// were are meant to replicate the <c>java.util.concurrent.atomic</c> package in Java by Doug Lea. The two main differences
     /// are implicit casting back to the <c>int</c> data type, and the use of a non-volatile inner variable.
     /// 
