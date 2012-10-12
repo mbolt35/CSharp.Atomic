@@ -57,7 +57,7 @@ namespace CSharp.Atomic {
         /// This method returns the current value.
         /// </summary>
         /// <returns></returns>
-	    public long Get() {
+        public long Get() {
             return Interlocked.Read(ref _value);
 	    }
 
@@ -84,9 +84,9 @@ namespace CSharp.Atomic {
         /// <param name="expected">the value to compare against.</param>
         /// <param name="result">the value to set if the value is equal to the <c>expected</c> value.</param>
         /// <returns><c>true</c> if the comparison and set was successful. A <c>false</c> indicates the comparison failed.</returns>
-	    public bool CompareAndSet(long expected, long result) {
+        public bool CompareAndSet(long expected, long result) {
             return Interlocked.CompareExchange(ref _value, result, expected) == expected;
-	    }
+        }
 
         /// <summary>
         /// Atomically adds the given value to the current value.
@@ -118,7 +118,7 @@ namespace CSharp.Atomic {
         /// <returns>The value before incrementing.</returns>
         public long Increment() {
             return GetAndAdd(1);
-	    }
+        }
 
         /// <summary>
         /// This method decrements the value by 1 and returns the previous value. This is the atomic version of post-decrement.
