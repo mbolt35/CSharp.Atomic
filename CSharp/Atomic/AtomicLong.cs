@@ -59,7 +59,7 @@ namespace CSharp.Atomic {
         /// <returns></returns>
         public long Get() {
             return Interlocked.Read(ref _value);
-	    }
+	}
 
         /// <summary>
         /// This method sets the current value atomically.
@@ -126,7 +126,7 @@ namespace CSharp.Atomic {
         /// <returns>The value before decrementing.</returns>
         public long Decrement() {
             return GetAndAdd(-1);
-	    }
+	}
 
         /// <summary>
         /// This method increments the value by 1 and returns the new value. This is the atomic version of pre-increment.
