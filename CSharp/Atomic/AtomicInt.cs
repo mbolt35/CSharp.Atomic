@@ -29,10 +29,11 @@ namespace CSharp.Atomic {
     /// 
     /// <para>The internals of these classes contain wrapped usage of the <c>System.Threading.Interlocked</c> class, which is how
     /// we are able to provide atomic operation without the use of locks. </para>
-    /// 
-    /// <para>It's also important to note that <c>++</c> and <c>--</c> are never atomic, and one of the main reasons this class is 
-    /// needed. I don't believe its possible to overload these operators in a way that is autonomous.</para>
     /// </summary>
+    /// <remarks>
+    /// It's also important to note that <c>++</c> and <c>--</c> are never atomic, and one of the main reasons this class is 
+    /// needed. I don't believe its possible to overload these operators in a way that is autonomous.
+    /// </remarks>
     /// <author>Matt Bolt</author>
     public class AtomicInt {
 
