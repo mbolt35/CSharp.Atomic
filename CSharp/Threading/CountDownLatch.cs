@@ -40,9 +40,11 @@ namespace CSharp.Threading {
         private ManualResetEvent _wait = new ManualResetEvent(false);
 
         /// <summary>
-        /// Creates a new <c>CountDownLatch</c> instance with the provided counter initializer.
+        ///     Creates a new <c>CountDownLatch</c> instance with the provided counter initializer.
         /// </summary>
-        /// <param name="count">The initial value of the counter. Note that this value must be greater than 0.</param>
+        /// <param name="count">
+        ///     The initial value of the counter. Note that this value must be greater than 0.
+        /// </param>
         public CountDownLatch(int count) {
             if (count <= 0) {
                 throw new Exception("Count value cannot be less than or equal to 0.");
@@ -52,7 +54,7 @@ namespace CSharp.Threading {
         }
 
         /// <summary>
-        /// This method decrements the counter by <c>1</c>. If the counter reaches 0, the reset event is set.
+        ///     This method decrements the counter by <c>1</c>. If the counter reaches 0, the reset event is set.
         /// </summary>
         public void CountDown() {
             if (_count.PreDecrement() <= 0) {
@@ -62,29 +64,34 @@ namespace CSharp.Threading {
 
 
         /// <summary>
-        /// Blocks execution of the current thread until the counter has reached 0.
+        ///     Blocks execution of the current thread until the counter has reached 0.
+        /// </summary>
         public void Await() {
             _wait.WaitOne();
         }
 
         /// <summary>
-        /// Blocks execution of the current thread until the counter has reached 0 or the timeout expires.
+        ///     Blocks execution of the current thread until the counter has reached 0 or the timeout expires.
         /// </summary>
-        /// <param name="millisecondsTimeout">The total amount of time, in milliseconds, to wait before continuing.</param>
+        /// <param name="millisecondsTimeout">
+        ///     The total amount of time, in milliseconds, to wait before continuing.
+        /// </param>
         public void Await(int millisecondsTimeout) {
             _wait.WaitOne(millisecondsTimeout);
         }
 
         /// <summary>
-        /// Blocks execution of the current thread until the counter has reached 0 or the timeout expires.
+        ///     Blocks execution of the current thread until the counter has reached 0 or the timeout expires.
         /// </summary>
-        /// <param name="timeout">The <c>TimeSpan</c> instance used as the time to wait before continuing.</param>
+        /// <param name="timeout">
+        ///     The <c>TimeSpan</c> instance used as the time to wait before continuing.
+        /// </param>
         public void Await(TimeSpan timeout) {
             _wait.WaitOne(timeout);
         }
 
         /// <summary>
-        /// The current value of the counter.
+        ///     The current value of the counter.
         /// </summary>
         public int CurrentCount {
             get {
