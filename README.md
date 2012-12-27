@@ -1,4 +1,4 @@
 CSharp.Atomic
 =============
 
-Replicates the java.util.concurrent.atomic java package in C#
+Concurrency utilities in C# based off the java.util.concurrent Java package. 
