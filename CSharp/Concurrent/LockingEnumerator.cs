@@ -60,5 +60,10 @@ namespace CSharp.Concurrent {
             }
         }
 
+        object IEnumerator.Current {
+            get {
+                return Current;
+            }
+        }
     }
 }
