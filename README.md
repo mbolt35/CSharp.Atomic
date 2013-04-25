@@ -1,4 +1,4 @@
 CSharp.Atomic
 =============
 
-Concurrency utilities in C# based off the java.util.concurrent Java package. 
+C# Concurrency API based off the `java.util.concurrent` Java package. 
