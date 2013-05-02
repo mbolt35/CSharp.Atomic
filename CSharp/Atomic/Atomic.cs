@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
 //  MATTBOLT.BLOGSPOT.COM
-//  Copyright(C) 2012 Matt Bolt
+//  Copyright(C) 2013 Matt Bolt
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -36,7 +36,7 @@ namespace CSharp.Atomic {
         private T _value;
 
         /// <summary>
-        ///     Creates a new <c>Atomic</c> instance with an initial value of <c>null</c>.
+        /// Creates a new <c>Atomic</c> instance with an initial value of <c>null</c>.
         /// </summary>
         public Atomic()
             : this(null) {
@@ -44,63 +44,63 @@ namespace CSharp.Atomic {
         }
 
         /// <summary>
-        ///     Creates a new <c>Atomic</c> instance with the initial value provided.
+        /// Creates a new <c>Atomic</c> instance with the initial value provided.
         /// </summary>
         public Atomic(T value) {
             _value = value;
         }
 
         /// <summary>
-        ///     This method returns the current value.
+        /// This method returns the current value.
         /// </summary>
         /// <returns>
-        ///     The <c>T</c> instance.
+        /// The <c>T</c> instance.
         /// </returns>
         public T Get() {
             return _value;
         }
 
         /// <summary>
-        ///     This method sets the current value atomically.
+        /// This method sets the current value atomically.
         /// </summary>
         /// <param name="value">
-        ///     The new value to set.
+        /// The new value to set.
         /// </param>
         public void Set(T value) {
             Interlocked.Exchange(ref _value, value);
         }
 
         /// <summary>
-        ///     This method atomically sets the value and returns the original value.
+        /// This method atomically sets the value and returns the original value.
         /// </summary>
         /// <param name="value">
-        ///     The new value.
+        /// The new value.
         /// </param>
         /// <returns>
-        ///     The value before setting to the new value.
+        /// The value before setting to the new value.
         /// </returns>
         public T GetAndSet(T value) {
             return Interlocked.Exchange(ref _value, value);
         }
 
         /// <summary>
-        ///     Atomically sets the value to the given updated value if the current value <c>==</c> the expected value.
+        /// Atomically sets the value to the given updated value if the current value <c>==</c> the expected value.
         /// </summary>
         /// <param name="expected">
-        ///     The value to compare against.
+        /// The value to compare against.
         /// </param>
         /// <param name="result">
-        ///     The value to set if the value is equal to the <c>expected</c> value.
+        /// The value to set if the value is equal to the <c>expected</c> value.
         /// </param>
         /// <returns>
-        ///     <c>true</c> if the comparison and set was successful. A <c>false</c> indicates the comparison failed.
+        /// <c>true</c> if the comparison and set was successful. A <c>false</c> indicates the comparison failed.
         /// </returns>
         public bool CompareAndSet(T expected, T result) {
             return Interlocked.CompareExchange(ref _value, result, expected) == expected;
         }
 
         /// <summary>
-        ///     This operator allows an implicit cast from <c>Atomic&lt;T&gt;</c> to <c>T</c>.
+        /// This operator allows an implicit cast from <c>Atomic&lt;T&gt;</c> to <c>T</c>.
         /// </summary>
         public static implicit operator T(Atomic<T> value) {
             return value.Get();

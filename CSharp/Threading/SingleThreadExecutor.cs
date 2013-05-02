@@ -1,7 +1,7 @@
 ﻿////////////////////////////////////////////////////////////////////////////////
 //
 //  MATTBOLT.BLOGSPOT.COM
-//  Copyright(C) 2012 Matt Bolt
+//  Copyright(C) 2013 Matt Bolt
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -21,10 +21,8 @@ namespace CSharp.Threading {
 
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using System.Threading;
-    using CSharp.Concurrent;
+    using CSharp.Collections.Concurrent;
     using CSharp.Atomic;
 
 
@@ -49,7 +47,7 @@ namespace CSharp.Threading {
         private AtomicBoolean _shuttingDown;
 
         /// <summary>
-        ///     Creates a new <c>SingleThreadExecutor</c> using a normal thread priority.
+        /// Creates a new <c>SingleThreadExecutor</c> using a normal thread priority.
         /// </summary>
         public SingleThreadExecutor()
             : this(ThreadPriority.Normal) {
@@ -57,10 +55,10 @@ namespace CSharp.Threading {
         }
 
         /// <summary>
-        ///     Creates a new <c>SingleThreadExecutor</c> using a custom thread priority.
+        /// Creates a new <c>SingleThreadExecutor</c> using a custom thread priority.
         /// </summary>
         /// <param name="priority">
-        ///     The priority to assign the thread.
+        /// The priority to assign the thread.
         /// </param>
         public SingleThreadExecutor(ThreadPriority priority) {
             _actions = new BlockingQueue<Action>();
@@ -71,11 +69,11 @@ namespace CSharp.Threading {
         }
 
         /// <summary>
-        ///     Queues an <c>Action</c> for execution by a single thread. <c>Action</c> items are
-        ///     executed in the same order in which they are added.
+        /// Queues an <c>Action</c> for execution by a single thread. <c>Action</c> items are
+        /// executed in the same order in which they are added.
         /// </summary>
         /// <param name="action">
-        ///     The <c>Action</c> delegate to queue for execution.
+        /// The <c>Action</c> delegate to queue for execution.
         /// </param>
         public void Execute(Action action) {
             if (_shuttingDown.Get()) {
@@ -93,7 +91,7 @@ namespace CSharp.Threading {
         }
 
         /// <summary>
-        ///     Completes the current queue and joins the thread.
+        /// Completes the current queue and joins the thread.
         /// </summary>
         public void Shutdown() {
             if (!_running.Get()) {
@@ -109,7 +107,7 @@ namespace CSharp.Threading {
         }
 
         /// <summary>
-        ///     Attempts to abort the <c>Thread</c> in the current state.
+        /// Attempts to abort the <c>Thread</c> in the current state.
         /// </summary>
         public void ShutdownNow() {
             if (!_running.Get()) {

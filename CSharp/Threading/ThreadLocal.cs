@@ -1,7 +1,7 @@
 ﻿////////////////////////////////////////////////////////////////////////////////
 //
 //  MATTBOLT.BLOGSPOT.COM
-//  Copyright(C) 2012 Matt Bolt
+//  Copyright(C) 2013 Matt Bolt
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,6 +23,7 @@ namespace CSharp.Threading {
     using System.Collections.Generic;
     using System.Threading;
     using CSharp.Atomic;
+
 
     /// <summary>
     /// This class stores a static instance of <c>T</c> in each <c>Thread</c> it is
@@ -47,11 +48,11 @@ namespace CSharp.Threading {
         private Func<T> _factory;
 
         /// <summary>
-        ///     Creates a new <c>ThreadLocal</c> instance using a <c>Func</c> capable
-        ///     of creating new <c>T</c> instances.
+        /// Creates a new <c>ThreadLocal</c> instance using a <c>Func</c> capable
+        /// of creating new <c>T</c> instances.
         /// </summary>
         /// <param name="factory">
-        ///     The <c>Func</c> instance used to create <c>T</c> instances.
+        /// The <c>Func</c> instance used to create <c>T</c> instances.
         /// </param>
         public ThreadLocal(Func<T> factory) {
             _id = ThreadLocalIds.Increment();
@@ -59,12 +60,12 @@ namespace CSharp.Threading {
         }
 
         /// <summary>
-        ///     This method retreives the <c>T</c> instance local to the current <c>Thread</c>. 
-        ///     If an instance does not exist, one is created via the <c>Func</c> passed
-        ///     via the constructor.
+        /// This method retreives the <c>T</c> instance local to the current <c>Thread</c>. 
+        /// If an instance does not exist, one is created via the <c>Func</c> passed
+        /// via the constructor.
         /// </summary>
         /// <returns>
-        ///     The <c>T</c> instance local to the current thread.
+        /// The <c>T</c> instance local to the current thread.
         /// </returns>
         public T Get() {
             if (null == Instances) {
@@ -79,11 +80,11 @@ namespace CSharp.Threading {
         }
 
         /// <summary>
-        ///     This method allows you to set the <c>T</c> instance local to the current
-        ///     <c>Thread</c>. 
+        /// This method allows you to set the <c>T</c> instance local to the current
+        /// <c>Thread</c>. 
         /// </summary>
         /// <param name="instance">
-        ///     The <c>T</c> instance to set on the local <c>Thread</c>.
+        /// The <c>T</c> instance to set on the local <c>Thread</c>.
         /// </param>
         public void Set(T instance) {
             if (null == Instances) {

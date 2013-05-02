@@ -1,7 +1,7 @@
 ﻿////////////////////////////////////////////////////////////////////////////////
 //
 //  MATTBOLT.BLOGSPOT.COM
-//  Copyright(C) 2012 Matt Bolt
+//  Copyright(C) 2013 Matt Bolt
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -17,14 +17,14 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-namespace CSharp.Concurrent {
+namespace CSharp.Collections.Concurrent {
 
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Threading;
-
+    using CSharp.Threading;
+    using CSharp.Locking;
 
     /// <summary>
     /// This class serves as a thread-safe wrapper for an <c>IEnumerator</c> implementation.
@@ -33,17 +33,17 @@ namespace CSharp.Concurrent {
     /// <typeparam name="T">The type of the enumerator.</typeparam>
     public class LockingEnumerator<T> : IEnumerator<T>, IEnumerator, IDisposable {
         private readonly IEnumerator<T> _enumerator;
-        private readonly object _mutex;
+        private readonly ILock _lock;
 
-        public LockingEnumerator(IEnumerator<T> enumerator, object mutex) {
+        public LockingEnumerator(IEnumerator<T> enumerator, ILock @lock) {
             _enumerator = enumerator;
-            _mutex = mutex;
+            _lock = @lock;
 
-            Monitor.Enter(_mutex);
+            _lock.Lock();
         }
 
         public void Dispose() {
-            Monitor.Exit(_mutex);
+            _lock.Unlock();
         }
 
         public bool MoveNext() {

@@ -1,7 +1,7 @@
 ﻿////////////////////////////////////////////////////////////////////////////////
 //
 //  MATTBOLT.BLOGSPOT.COM
-//  Copyright(C) 2012 Matt Bolt
+//  Copyright(C) 2013 Matt Bolt
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -40,7 +40,7 @@ namespace CSharp.Atomic {
         private int _value;
 
         /// <summary>
-        ///     Creates a new <c>AtomicBoolean</c> instance with an initial value of <c>false</c>.
+        /// Creates a new <c>AtomicBoolean</c> instance with an initial value of <c>false</c>.
         /// </summary>
         public AtomicBoolean()
             : this(false) {
@@ -48,56 +48,56 @@ namespace CSharp.Atomic {
         }
 
         /// <summary>
-        ///     Creates a new <c>AtomicBoolean</c> instance with the initial value provided.
+        /// Creates a new <c>AtomicBoolean</c> instance with the initial value provided.
         /// </summary>
         public AtomicBoolean(bool value) {
             _value = value ? 1 : 0;
         }
 
         /// <summary>
-        ///     This method returns the current value.
+        /// This method returns the current value.
         /// </summary>
         /// <returns>
-        ///     The <c>bool</c> value to be accessed atomically.
+        /// The <c>bool</c> value to be accessed atomically.
         /// </returns>
         public bool Get() {
             return _value != 0;
         }
 
         /// <summary>
-        ///     This method sets the current value atomically.
+        /// This method sets the current value atomically.
         /// </summary>
         /// <param name="value">
-        ///     The new value to set.
+        /// The new value to set.
         /// </param>
         public void Set(bool value) {
             Interlocked.Exchange(ref _value, value ? 1 : 0);
         }
 
         /// <summary>
-        ///     This method atomically sets the value and returns the original value.
+        /// This method atomically sets the value and returns the original value.
         /// </summary>
         /// <param name="value">
-        ///     The new value.
+        /// The new value.
         /// </param>
         /// <returns>
-        ///     The value before setting to the new value.
+        /// The value before setting to the new value.
         /// </returns>
         public bool GetAndSet(bool value) {
             return Interlocked.Exchange(ref _value, value ? 1 : 0) != 0;
         }
 
         /// <summary>
-        ///     Atomically sets the value to the given updated value if the current value <c>==</c> the expected value.
+        /// Atomically sets the value to the given updated value if the current value <c>==</c> the expected value.
         /// </summary>
         /// <param name="expected">
-        ///     The value to compare against.
+        /// The value to compare against.
         /// </param>
         /// <param name="result">
-        ///     The value to set if the value is equal to the <c>expected</c> value.
+        /// The value to set if the value is equal to the <c>expected</c> value.
         /// </param>
         /// <returns>
-        ///     <c>true</c> if the comparison and set was successful. A <c>false</c> indicates the comparison failed.
+        /// <c>true</c> if the comparison and set was successful. A <c>false</c> indicates the comparison failed.
         /// </returns>
         public bool CompareAndSet(bool expected, bool result) {
             int e = expected ? 1 : 0;
@@ -106,7 +106,7 @@ namespace CSharp.Atomic {
         }
 
         /// <summary>
-        ///     This operator allows an implicit cast from <c>AtomicBoolean</c> to <c>int</c>.
+        /// This operator allows an implicit cast from <c>AtomicBoolean</c> to <c>int</c>.
         /// </summary>
         public static implicit operator bool(AtomicBoolean value) {
             return value.Get();
