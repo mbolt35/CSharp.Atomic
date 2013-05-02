@@ -21,6 +21,8 @@ namespace CSharp.Locking {
 
     using System;
     using System.Collections.Generic;
+
+    using CSharp.Collections;
     using CSharp.Util;
 
 
