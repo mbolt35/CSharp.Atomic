@@ -7,3 +7,8 @@ bin/Debug/
 
 # mstest test results
 TestResults
+CSharp.Atomic.csproj
+
+CSharp.Atomic.sln
+
+CSharp.Atomic.userprefs
