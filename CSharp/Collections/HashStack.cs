@@ -17,7 +17,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-namespace CSharp.Util {
+namespace CSharp.Collections {
 
     using System;
     using System.Collections.Generic;
