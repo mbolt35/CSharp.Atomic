@@ -14,9 +14,11 @@ var hierarchy =
       [ "CSharp.Collections.Concurrent.LockingEnumerator< T >", "d4/d94/class_c_sharp_1_1_collections_1_1_concurrent_1_1_locking_enumerator_3_01_t_01_4.html", null ]
     ] ],
     [ "IEnumerable", null, [
+      [ "CSharp.Collections.Concurrent.BlockingBuffer< T >", "d2/d6d/class_c_sharp_1_1_collections_1_1_concurrent_1_1_blocking_buffer_3_01_t_01_4.html", null ],
       [ "CSharp.Collections.Concurrent.BlockingQueue< T >", "db/dec/class_c_sharp_1_1_collections_1_1_concurrent_1_1_blocking_queue_3_01_t_01_4.html", null ]
     ] ],
     [ "IEnumerable< T >", null, [
+      [ "CSharp.Collections.Concurrent.BlockingBuffer< T >", "d2/d6d/class_c_sharp_1_1_collections_1_1_concurrent_1_1_blocking_buffer_3_01_t_01_4.html", null ],
       [ "CSharp.Collections.Concurrent.BlockingQueue< T >", "db/dec/class_c_sharp_1_1_collections_1_1_concurrent_1_1_blocking_queue_3_01_t_01_4.html", null ]
     ] ],
     [ "IEnumerator", null, [

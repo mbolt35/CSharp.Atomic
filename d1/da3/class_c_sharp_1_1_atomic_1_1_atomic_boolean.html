@@ -105,7 +105,7 @@ Static Public Member Functions</h2></td></tr>
 <p>The atomic classes found in this package were are meant to replicate the <code>java.util.concurrent.atomic</code> package in Java by Doug Lea. The two main differences are implicit casting back to the <code>bool</code> data type, and the use of a non-volatile inner variable.</p>
 <p>The internals of these classes contain wrapped usage of the <code>System.Threading.Interlocked</code> class, which is how we are able to provide atomic operation without the use of locks. </p>
 <p>It's also important to note that <code>++</code> and <code>&ndash;</code> are never atomic, and one of the main reasons this class is needed. I don't believe its possible to overload these operators in a way that is autonomous. </p>
-<p>&lt;author&gt;Matt Bolt&lt;/author&gt; </p>
+<dl class="section author"><dt>Author</dt><dd>Matt Bolt </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a6bf8937b91e062a173a91f78bdf40fe7"></a>
 <div class="memitem">
@@ -278,7 +278,7 @@ Static Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../d4/d9e/namespace_c_sharp.html">CSharp</a></li><li class="navelem"><a class="el" href="../../df/d5c/namespace_c_sharp_1_1_atomic.html">Atomic</a></li><li class="navelem"><a class="el" href="../../d1/da3/class_c_sharp_1_1_atomic_1_1_atomic_boolean.html">AtomicBoolean</a></li>
-    <li class="footer">Generated on Fri May 3 2013 00:06:47 for CSharp.Atomic: Concurrent Data Structures by
+    <li class="footer">Generated on Thu May 9 2013 13:45:45 for CSharp.Atomic: Concurrent Data Structures by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.2 </li>
   </ul>

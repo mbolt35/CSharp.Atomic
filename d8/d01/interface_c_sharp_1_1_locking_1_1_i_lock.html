@@ -109,9 +109,19 @@ Properties</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This interface represents a thread access locking implementation. </p>
 <p>The common use case for these objects will in a <code>try/finally</code> block:</p>
-<p><code> <a class="el" href="../../d8/d01/interface_c_sharp_1_1_locking_1_1_i_lock.html" title="This interface represents a thread access locking implementation.">ILock</a> _lock; List&lt;int&gt; _integers = new List&lt;int&gt;();</code></p>
-<p><code>void AddToList(int integer) { _lock.Lock(); try { _integers.Add(integer); } finally { _lock.Unlock(); } } </code> </p>
-<p>&lt;author&gt;Matt Bolt&lt;/author&gt; </p>
+<div class="fragment"><div class="line">ILock _lock;</div>
+<div class="line">List&lt;int&gt; _integers = <span class="keyword">new</span> List&lt;int&gt;();</div>
+<div class="line"></div>
+<div class="line"><span class="keywordtype">void</span> AddToList(<span class="keywordtype">int</span> integer) {</div>
+<div class="line">    _lock.Lock();</div>
+<div class="line">    <span class="keywordflow">try</span> { </div>
+<div class="line">        _integers.Add(integer);</div>
+<div class="line">    }</div>
+<div class="line">    <span class="keywordflow">finally</span> {</div>
+<div class="line">        _lock.Unlock();</div>
+<div class="line">    }</div>
+<div class="line">}</div>
+</div><!-- fragment --><dl class="section author"><dt>Author</dt><dd>Matt Bolt </dd></dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="a19bec6e61fbc2bc3681a9a49094c7792"></a>
 <div class="memitem">
@@ -203,7 +213,7 @@ If this lock is not held when any of the <code><a class="el" href="../../db/d75/
 <dl class="section return"><dt>Returns</dt><dd><code>true</code> if the lock was available and acquired. Otherwise, <code>false</code> is returned if the <code>timeout</code> elapses before the lock can be acquired.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">timeoutMs</td><td>The maximum amount of time to wait before returning a <code>false</code></td></tr>
+    <tr><td class="paramname">timeout</td><td>The maximum amount of time to wait before returning a <code>false</code></td></tr>
   </table>
   </dd>
 </dl>
@@ -258,7 +268,7 @@ If this lock is not held when any of the <code><a class="el" href="../../db/d75/
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../d4/d9e/namespace_c_sharp.html">CSharp</a></li><li class="navelem"><a class="el" href="../../d4/d70/namespace_c_sharp_1_1_locking.html">Locking</a></li><li class="navelem"><a class="el" href="../../d8/d01/interface_c_sharp_1_1_locking_1_1_i_lock.html">ILock</a></li>
-    <li class="footer">Generated on Fri May 3 2013 00:06:47 for CSharp.Atomic: Concurrent Data Structures by
+    <li class="footer">Generated on Thu May 9 2013 13:45:45 for CSharp.Atomic: Concurrent Data Structures by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.2 </li>
   </ul>

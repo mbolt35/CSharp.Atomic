@@ -133,7 +133,7 @@ Properties</h2></td></tr>
 <div class="textblock"><p>A reentrant mutual exclusion <code><a class="el" href="../../d8/d01/interface_c_sharp_1_1_locking_1_1_i_lock.html" title="This interface represents a thread access locking implementation.">ILock</a></code> with the same basic behavior and semantics as the implicit monitor lock accessed using the <code>lock</code> keyword, but with some additional capabilities. </p>
 <p>A <code><a class="el" href="../../d5/d8c/class_c_sharp_1_1_locking_1_1_reentrant_lock.html" title="A reentrant mutual exclusion ILock with the same basic behavior and semantics as the implicit monitor...">ReentrantLock</a></code> is owned by the thread last successfully locking, but not yet unlocking it. A thread invoking lock will return, successfully acquiring the lock, when the lock is not owned by another thread. The method will return immediately if the current thread already owns the lock. This can be checked using the property <code>IsHeldByCurrentThread</code> </p>
 <p>This class does not currently support fairness like the java version of this lock, <code>java.util.concurrent.locks.ReentrantLock</code> </p>
-<p>&lt;author&gt;Matt Bolt&lt;/author&gt; </p>
+<dl class="section author"><dt>Author</dt><dd>Matt Bolt </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="abce89d22c5b20fb88ce7fb9aae764151"></a>
 <div class="memitem">
@@ -285,7 +285,7 @@ Properties</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../d4/d9e/namespace_c_sharp.html">CSharp</a></li><li class="navelem"><a class="el" href="../../d4/d70/namespace_c_sharp_1_1_locking.html">Locking</a></li><li class="navelem"><a class="el" href="../../d5/d8c/class_c_sharp_1_1_locking_1_1_reentrant_lock.html">ReentrantLock</a></li>
-    <li class="footer">Generated on Fri May 3 2013 00:06:47 for CSharp.Atomic: Concurrent Data Structures by
+    <li class="footer">Generated on Thu May 9 2013 13:45:45 for CSharp.Atomic: Concurrent Data Structures by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.2 </li>
   </ul>
