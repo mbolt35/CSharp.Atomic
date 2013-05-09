@@ -27,7 +27,7 @@ namespace CSharp.Locking {
     /// This class is used to generate condition ids for lock instances. The ids generated
     /// need only be unique per each lock instance, and are *not* exposed outside of the lock.
     /// </summary>
-    /// <author>Matt Bolt</author>
+    /// \author Matt Bolt
     public class ConditionIds {
         private readonly string _prefix;
         private readonly AtomicLong _ids;

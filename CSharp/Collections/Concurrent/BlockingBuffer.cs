@@ -1,4 +1,4 @@
-﻿////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 //
 //  MATTBOLT.BLOGSPOT.COM
 //  Copyright(C) 2013 Matt Bolt
@@ -20,37 +20,43 @@
 namespace CSharp.Collections.Concurrent {
 
     using System;
-    using System.Threading;
     using System.Collections;
     using System.Collections.Generic;
-    using CSharp.Threading;
     using CSharp.Locking;
+    using CSharp.Threading;
 
 
     /// <summary>
-    /// This <c>IEnumerable</c> implementation can be used to throttle a producer/consumer model.
+    /// This collection is similar to the <c>BlockingQueue</c>. However, in addition to blocking
+    /// the accessing thread on a <c>Dequeue()</c> when the buffer is empty, it will also block
+    /// the accessing thread on an <c>Enqueue()</c> when the buffer has reached it's max capacity.
     /// </summary>
-    /// <typeparam name="T">The type used in this queue.</typeparam>
+    /// <remarks>
+    /// Currently, this class and <c>BlockingQueue</c> are nearly identical, with the only difference 
+    /// being how the <c>ICondition</c> instances within <c>BlockingBuffer&lt;T&gt;</c> controling both
+    /// the upper and lower bounds of the queue, where the <c>BlockingQueue&lt;T&gt;</c> only controls the
+    /// lower bound.
+    /// 
+    /// <para>
+    /// While it would be possible to use inheritance here, it may be beneficial to keep the classes separate
+    /// for now. 
+    /// </para>
+    /// </remarks>
     /// \author Matt Bolt
-    public class BlockingQueue<T> : IEnumerable<T>, IEnumerable {
-        private readonly ILock _lock;
+    public class BlockingBuffer<T> : IEnumerable<T>, IEnumerable {
+
+        private readonly Queue<T> _buffer;
+        private readonly ReentrantLock _lock;
+        private readonly ICondition _notFull;
         private readonly ICondition _notEmpty;
-        private readonly Queue<T> _queue;
+        private readonly int _capacity;
 
-        public BlockingQueue() 
-            : this(1) {
+        public BlockingBuffer(int capacity) {
+            _capacity = capacity;
 
-        }
-
-        public BlockingQueue(int capacity) {
-            _queue = new Queue<T>(capacity);
+            _buffer = new Queue<T>(_capacity);
             _lock = new ReentrantLock();
-            _notEmpty = _lock.NewCondition();
-        }
-
-        public BlockingQueue(IEnumerable<T> collection) {
-            _queue = new Queue<T>(collection);
-            _lock = new ReentrantLock();
+            _notFull = _lock.NewCondition();
             _notEmpty = _lock.NewCondition();
         }
 
@@ -63,14 +69,18 @@ namespace CSharp.Collections.Concurrent {
         public void Enqueue(T item) {
             _lock.Lock();
             try { 
-                _queue.Enqueue(item);
+                while (_buffer.Count == _capacity) {
+                    _notFull.Await();
+                }
+
+                _buffer.Enqueue(item);
                 _notEmpty.Signal();
             }
             finally {
                 _lock.Unlock();
             }
         }
-
+        
         /// <summary>
         /// This method will remove and return the item in the front of the queue if one exists, or
         /// it will block the current thread until there is an item to dequeue.
@@ -81,30 +91,34 @@ namespace CSharp.Collections.Concurrent {
         public T Dequeue() {
             _lock.Lock();
             try { 
-                while (_queue.Count == 0) {
+                while (_buffer.Count == 0) {
                     _notEmpty.Await();
                 }
+                
+                T result = _buffer.Dequeue();
+                _notFull.Signal();
 
-                return _queue.Dequeue();
+                return result;
             }
             finally {
                 _lock.Unlock();
             }
         }
-
+        
         /// <summary>
         /// Removes all objects from the queue.
         /// </summary>
         public void Clear() {
             _lock.Lock();
             try {
-                _queue.Clear();
+                _buffer.Clear();
+                _notFull.Signal();
             }
             finally {
                 _lock.Unlock();
             }
         }
-
+        
         /// <summary>
         /// Determines whether an element is in the queue.
         /// </summary>
@@ -117,13 +131,13 @@ namespace CSharp.Collections.Concurrent {
         public bool Contains(T item) {
             _lock.Lock();
             try {
-                return _queue.Contains(item);
+                return _buffer.Contains(item);
             }
             finally {
                 _lock.Unlock();
             }
         }
-
+        
         /// <summary>
         /// Copies the queue elements to an existing one-dimensional <c>T</c> array, starting at the specified array 
         /// index.
@@ -148,13 +162,13 @@ namespace CSharp.Collections.Concurrent {
         public void CopyTo(T[] array, int arrayIndex) {
             _lock.Lock();
             try {
-                _queue.CopyTo(array, arrayIndex);
+                _buffer.CopyTo(array, arrayIndex);
             }
             finally {
                 _lock.Unlock();
             }
         }
-
+        
         /// <summary>
         /// Returns the object at the beginning of the queue without removing it.
         /// </summary>
@@ -169,13 +183,13 @@ namespace CSharp.Collections.Concurrent {
         public T Peek() {
             _lock.Lock();
             try {
-                return _queue.Peek();
+                return _buffer.Peek();
             }
             finally {
                 _lock.Unlock();
             }
         }
-
+        
         /// <summary>
         /// Copies the queue elements to a new array.
         /// </summary>
@@ -183,13 +197,13 @@ namespace CSharp.Collections.Concurrent {
         public T[] ToArray() {
             _lock.Lock();
             try {
-                return _queue.ToArray();
+                return _buffer.ToArray();
             }
             finally {
                 _lock.Unlock();
             }
         }
-
+        
         /// <summary>
         /// This property contains the size of the queue.
         /// </summary>
@@ -197,7 +211,7 @@ namespace CSharp.Collections.Concurrent {
             get {
                 _lock.Lock();
                 try {
-                    return _queue.Count;
+                    return _buffer.Count;
                 }
                 finally {
                     _lock.Unlock();
@@ -205,12 +219,15 @@ namespace CSharp.Collections.Concurrent {
             }
         }
 
+        /// <inheritdoc/>
         public IEnumerator<T> GetEnumerator() {
-            return new LockingEnumerator<T>(_queue.GetEnumerator(), _lock);
+            return new LockingEnumerator<T>(_buffer.GetEnumerator(), _lock);
         }
-
+        
         IEnumerator IEnumerable.GetEnumerator() {
             return GetEnumerator();
         }
+
     }
 }
+

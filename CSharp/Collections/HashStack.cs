@@ -36,7 +36,7 @@ namespace CSharp.Collections {
     /// at a time.
     /// </para>
     /// </summary>
-    /// <author>Matt Bolt</author>
+    /// \author Matt Bolt
     public class HashStack<T,U>  {
         private readonly Dictionary<T, Stack<U>> _hashStack;
 

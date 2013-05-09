@@ -28,7 +28,7 @@ namespace CSharp.Locking {
     /// This interface represents a thread access locking implementation.
     /// 
     /// <para>The common use case for these objects will in a <c>try/finally</c> block:</para>
-    /// <code>
+    /// @code
     /// ILock _lock;
     /// List<int> _integers = new List<int>();
     /// 
@@ -41,9 +41,10 @@ namespace CSharp.Locking {
     ///         _lock.Unlock();
     ///     }
     /// }
-    /// </code>
+    /// @endcode
+    /// 
     /// </summary>
-    /// <author>Matt Bolt</author>
+    /// \author Matt Bolt
     public interface ILock {
 
         /// <summary>
@@ -65,7 +66,7 @@ namespace CSharp.Locking {
         /// </summary>
         /// <returns><c>true</c> if the lock was available and acquired. Otherwise, <c>false</c> is returned
         /// if the <c>timeout</c> elapses before the lock can be acquired.</returns>
-        /// <param name="timeoutMs">The maximum amount of time to wait before returning a <c>false</c></param>
+        /// <param name="timeout">The maximum amount of time to wait before returning a <c>false</c></param>
         bool TryLock(TimeSpan timeout);
 
         /// <summary>
@@ -81,21 +82,21 @@ namespace CSharp.Locking {
         /// (<c>Monitor.Wait()</c> and <c>Monitor.PulseAll()</c>).
         /// </para>
         ///
-        /// <ul>
-        /// <li>
+        /// <list>
+        /// <item>
         /// If this lock is not held when any of the <c>ICondition.Await()</c> or <c>ICondition.Signal()<c/>
         /// methods are called, then an exception is thrown.
-        /// </li>
-        /// <li>
+        /// </item>
+        /// <item>
         /// When the condition <c>ICondition.Await()</c> methods are called the lock is released and, before they
         /// return, the lock is reacquired and the lock hold count restored to what it was when the method was called.
-        /// </li>
-        /// <li>
+        /// </item>
+        /// <item>
         /// The ordering of lock reacquisition for threads returning
         /// from waiting methods is the same as for threads initially
         /// acquiring the lock, which is in the default case not specified.
-        /// </li>
-        /// </ul>
+        /// </item>
+        /// </list>
         /// </summary>
         /// <returns>The <c>ICondition</c> object</returns>
         ICondition NewCondition();

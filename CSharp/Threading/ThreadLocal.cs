@@ -31,7 +31,7 @@ namespace CSharp.Threading {
     /// attribute. 
     /// </summary>
     /// <typeparam name="T">The type local to each thread.</typeparam>
-    /// <author>Matt Bolt</author>
+    /// \author Matt Bolt
     public class ThreadLocal<T> {
 
         // Generate a unique ThreadLocal identifier for each instance

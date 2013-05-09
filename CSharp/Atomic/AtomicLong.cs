@@ -15,7 +15,7 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////// 
 
 namespace CSharp.Atomic {
 
@@ -34,7 +34,7 @@ namespace CSharp.Atomic {
     /// It's also important to note that <c>++</c> and <c>--</c> are never atomic, and one of the main reasons this class is 
     /// needed. I don't believe its possible to overload these operators in a way that is autonomous.
     /// </remarks>
-    /// <author>Matt Bolt</author>
+    /// \author Matt Bolt
     public class AtomicLong {
 
         private long _value;
@@ -119,7 +119,7 @@ namespace CSharp.Atomic {
         /// <summary>
         /// This method atomically adds a <c>delta</c> the value and returns the original value.
         /// </summary>
-        /// <param name="value">
+        /// <param name="delta">
         /// The value to add to the existing value.
         /// </param>
         /// <returns>

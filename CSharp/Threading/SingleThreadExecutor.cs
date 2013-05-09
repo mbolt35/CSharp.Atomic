@@ -36,7 +36,7 @@ namespace CSharp.Threading {
     /// This executor uses a single thread and executes queued actions sequentially using an
     /// internal <c>BlockingQueue</c>. 
     /// </summary>
-    /// <author>Matt Bolt</author>
+    /// \author Matt Bolt
     public class SingleThreadExecutor {
 
         private readonly BlockingQueue<Action> _actions;

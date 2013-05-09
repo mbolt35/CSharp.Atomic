@@ -41,7 +41,7 @@ namespace CSharp.Locking {
     /// This class does not currently support fairness like the java version of this lock,
     /// <c>java.util.concurrent.locks.ReentrantLock</c>
     /// </remarks>
-    /// <author>Matt Bolt</author>
+    /// \author Matt Bolt
     public class ReentrantLock : ILock {
         private readonly LockMonitor _monitor;
         private readonly ConditionIds _ids;

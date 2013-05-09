@@ -34,7 +34,7 @@ namespace CSharp.Threading {
     /// This class performs a very similar task to the <c>CountDownEvent</c> class from .NET 4.5, but is compatible 
     /// with .NET 3.0+ for use with platforms like Unity3D.
     /// </remarks>
-    /// <author>Matt Bolt</author>
+    /// \author Matt Bolt
     public class CountDownLatch {
 
         private AtomicInt _count;

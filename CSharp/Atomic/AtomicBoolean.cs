@@ -34,7 +34,7 @@ namespace CSharp.Atomic {
     /// It's also important to note that <c>++</c> and <c>--</c> are never atomic, and one of the main reasons this class is 
     /// needed. I don't believe its possible to overload these operators in a way that is autonomous.
     /// </remarks>
-    /// <author>Matt Bolt</author>
+    /// \author Matt Bolt
     public class AtomicBoolean {
 
         private int _value;

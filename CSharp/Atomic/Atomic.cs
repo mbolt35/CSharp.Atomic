@@ -30,7 +30,7 @@ namespace CSharp.Atomic {
     /// <para>The internals of these classes contain wrapped usage of the <c>System.Threading.Interlocked</c> class, which is how
     /// we are able to provide atomic operation without the use of locks. </para>
     /// </summary>
-    /// <author>Matt Bolt</author>
+    /// \author Matt Bolt
     public class Atomic<T> where T : class {
 
         private T _value;

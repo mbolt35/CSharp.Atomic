@@ -25,7 +25,7 @@ namespace CSharp.Util {
     /// <summary>
     /// This static class provides helper methods for working with <c>System.Threading</c>.
     /// </summary>
-    /// <author>Matt Bolt</author>
+    /// \author Matt Bolt
     public static class ThreadHelper {
 
         /// <summary>
